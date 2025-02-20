@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: frontend
+  namespace: lab-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - image: idrisniyi94/api-frontend-k8s:stable
+        name: api-frontend-k8s
+        ports:
+        - containerPort: 3000
+        resources: {}
+        env:
+          - name: FLASK_API_URL
+            # value: "http://backend-svc.lab-demo.svc.cluster.local:5000/api/products" # in different namespace or can work within same namespace
+            value: "http://backend-svc:5000/api/products" # within same namespace. Can only work within same namespace

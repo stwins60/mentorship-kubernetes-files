@@ -1,0 +1,16 @@
+services:
+  frontend:
+    container_name: lab-server-frontend
+    image: idrisniyi94/api-frontend-k8s:stable
+    ports:
+      - 3400:3000
+    environment:
+      - USER=lab-server
+      - FLASK_API_URL=http://backend:5000/api/products
+  backend:
+    container_name: lab-server-backend
+    image: idrisniyi94/api-backend-k8s:stable
+    ports:
+      - 5000:5000
+    environment:
+      - USER=lab-server
