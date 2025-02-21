@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: flask-api-k8s
+  name: flask-api-k8s
+  namespace: lab-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-api-k8s
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: flask-api-k8s
+    spec:
+      containers:
+      - image: idrisniyi94/flask-k8s-api:stable-v1
+        name: flask-k8s-api
+        ports:
+        - containerPort: 5000
+        resources: {}
+        envFrom:
+          - configMapRef:
+              name: flask-k8s-config-env

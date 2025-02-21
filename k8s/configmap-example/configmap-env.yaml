@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  APP_ENV: dev
+  APP_NAME: flask-k8s-api
+  DB_HOST: ""
+  DB_NAME: 
+  DB_PASSWORD: 
+  DB_PORT: ""
+  DB_USER: postgres
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: flask-k8s-config-env
+  namespace: lab-server
